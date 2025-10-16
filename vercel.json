@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "runtime": "python@3.11",
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main.py"
+    }
+  ],
+  "env": {
+    "GITHUB_TOKEN": "@github_token",
+    "HF_TOKEN": "@hugging_face_token",
+    "OPENAI_API_KEY": "@openai_api_key",
+    "OPENAI_BASE_URL": "https://aipipe.org/openai/v1",
+    "VALID_SECRET": "@valid_secret",
+    "JULEP_API_KEY": "@julep_api_key",
+    "JULEP_BASE_URL": "https://api.julep.ai/v1"
+  }
+}

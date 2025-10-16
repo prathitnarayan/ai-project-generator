@@ -1,0 +1,8 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+httpx==0.25.1
+pydantic==2.5.0
+PyGithub==1.60.0
+huggingface-hub==0.19.4
+anthropic==0.7.11
+python-dotenv==1.0.0
