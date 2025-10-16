@@ -4,5 +4,5 @@ httpx==0.25.1
 pydantic==2.5.0
 PyGithub==2.8.1
 huggingface-hub==0.19.4
-anthropic==0.7.11
+anthropic==0.70.0
 python-dotenv==1.0.0
