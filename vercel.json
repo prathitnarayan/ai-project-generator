@@ -11,12 +11,5 @@
       "src": "/(.*)",
       "dest": "main.py"
     }
-  ],
-  "env": {
-    "GITHUB_TOKEN": "@github_token",
-    "HF_TOKEN": "@hugging_face_token",
-    "OPENAI_API_KEY": "@openai_api_key",
-    "OPENAI_BASE_URL": "https://aipipe.org/openai/v1",
-    "VALID_SECRET": "@valid_secret"
-  }
+  ]
 }
