@@ -9,7 +9,7 @@ import base64
 from datetime import datetime
 from github import Github, GithubException
 from huggingface_hub import HfApi, HfFolder
-import anthropic
+from openai import OpenAI
 import logging
 
 # Initialize logging
@@ -32,8 +32,8 @@ JULEP_BASE_URL = os.getenv("JULEP_BASE_URL", "https://api.julep.ai/v1")
 gh = Github(GITHUB_TOKEN) if GITHUB_TOKEN else None
 hf_api = HfApi(token=HF_TOKEN) if HF_TOKEN else None
 
-# Anthropic client (fallback for code generation)
-anthropic_client = anthropic.Anthropic(api_key=OPENAI_API_KEY)
+# Initialize OpenAI client
+openai_client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL)
 
 # Pydantic models
 class Attachment(BaseModel):
@@ -123,15 +123,15 @@ REQUIREMENTS:
 CRITICAL: Return ONLY the HTML code with no explanations or markdown."""
 
     try:
-        # Use Anthropic/OpenAI compatible endpoint
-        message = anthropic_client.messages.create(
-            model="claude-3-5-sonnet-20241022",
+        # Use OpenAI GPT-4o-mini via AIPipe
+        message = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
             max_tokens=4096,
             messages=[
                 {"role": "user", "content": prompt}
             ]
         )
-        return message.content[0].text
+        return message.choices[0].message.content
     except Exception as e:
         logger.error(f"LLM Error: {e}")
         # Fallback minimal app
